@@ -2,22 +2,24 @@
 import React, { useContext } from "react";
 import ChangoContext from "../context/chango-context";
 import cart from '../images/cart.png';
-import { currencyArgentina } from "../locales/arg";
+
+import TotalCost from "./TotalCost";
 
 // stateless functional component
 //MEJORAS: agregar monto total en base a state. Usar useContext para tener acceso aca o nuevo componente de monto total si lo hago
+// el nuevo componente es TotalCost
 const NavBar = () => {
   console.log("usando NavBar actualizado usando contexto");
   const {groceries} = useContext(ChangoContext);
 
-  const getSubtotal=()=>{
+  /* const getSubtotal=()=>{
     
     const total = groceries.reduce((total,item)=>{
       return total + item.price * item.value;
     },0);
 
     return total===0 ? "Estoy vacío :( " : total.toLocaleString("es-ar", currencyArgentina);
-  };
+  }; */
 
   const totalCounters = groceries.filter(c=> c.value>0).length;
 
@@ -29,7 +31,8 @@ const NavBar = () => {
         <span className="badge badge-pill badge-secondary">
           {totalCounters}
         </span>
-        <span>    {getSubtotal()}</span>
+        <TotalCost />
+        {/* <span>    {getSubtotal()}</span> */}
       </a>
     </nav>
   );

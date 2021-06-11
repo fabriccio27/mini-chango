@@ -15,12 +15,16 @@ function Counter({item}) {
       const { value } = item;
       return value === 0 ? "Cero" : value;
   };
+  const getSubtotal=()=>{
+      const subt = item.value === 0? " - ":(item.price * item.value).toLocaleString("es-ar", currencyArgentina)
+      return subt;
+  }
 
   return(
     <div>
-        <span>{item.description}</span>
-        <span>{item.price.toLocaleString("es-ar", currencyArgentina)}</span>
-        <span>{(item.price * item.value).toLocaleString("es-ar", currencyArgentina)}</span>
+        <span className="item-description">{item.description}</span>
+        <span className="item-price">{item.price.toLocaleString("es-ar", currencyArgentina)}</span>
+        <span className="item-subtotal">{getSubtotal()}</span>
         <span className={getBadgesClasses()}>{formatCount()}</span>
         <button
              onClick={() => handleIncrement(item)}

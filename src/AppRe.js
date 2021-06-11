@@ -38,7 +38,7 @@ function App(){
     return (
         <ChangoContext.Provider value={{groceries, handleReset, handleIncrement, handleDelete}}>
             <NavBar />
-            <h1>Usando AppRefactorizada</h1>
+            {/* <h1>Usando AppRefactorizada</h1> */}
             <main className="container">
               {/* Counters usa groceries ("counters" de antes) para mapear y generar multiples Counter, pero onReset, onIncrement etc, los pasa, eso lo voy a mejorar con useContext */}
               <Counters />
