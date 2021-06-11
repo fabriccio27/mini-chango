@@ -4,16 +4,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavBar from './components/navbar';
 import Counters from './components/counters';
-// usamos la NAVBAR de bootstrap
-// https://getbootstrap.com/docs/5.0/components/navbar/
 
+
+
+
+/* MEJORAS: 
+1. pasar a componente funcional y pasar estado con hooks
+2. usar useContext
+3. agregar productos con precios
+*/
+
+/* como armo nuevo state? */
 class App extends Component {
     state = {
         counters: [
-          { id: 1, value: 4 },
-          { id: 2, value: 0 },
-          { id: 3, value: 0 },
-          { id: 4, value: 0 },
+          { id: 1, value: 4, description:"Tomates", price:120 },
+          { id: 2, value: 0, description:"Galletitas", price:250 },
+          { id: 3, value: 0, description:"Lata de atun", price:380 },
+          { id: 4, value: 0, description:"Aquarius", price:170 },
         ],
       };
       constructor(){
@@ -56,8 +64,10 @@ class App extends Component {
     console.log('app - rendered');
   return (
     <React.Fragment>
+    {/* counters no va a existir mas, asi que esto va a cambiar */}
     <NavBar totalCounters={this.state.counters.filter(c=> c.value>0).length} />
     <main className="container">
+      {/* Counters usa counters para mapear y generar multiples Counter, pero onReset, onIncrement etc, los pasa, eso lo voy a mejorar con useContext */}
       <Counters 
       counters={this.state.counters}
       onReset={this.handleReset}

@@ -1,7 +1,28 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
+import ChangoContext from "../context/chango-context";
 import Counter from "./counter";
 // trabaja SIN ESTADO LOCAL en Counter
-class Counters extends Component {
+function Counters(){
+  console.log("usando Counters como functional");
+  const {groceries, handleReset} = useContext(ChangoContext);
+  return(
+    <div>
+        <button
+          onClick={handleReset}
+          className="brn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
+        {groceries.map((item) => (
+          <Counter
+            key={item.id}
+            item={item}
+          />
+        ))}
+    </div>
+  );
+};
+/* class Counters extends Component {
    render() {
     console.log('counterss rendered');
     return (
@@ -23,5 +44,5 @@ class Counters extends Component {
       </div>
     );
   }
-}
+} */
 export default Counters;
